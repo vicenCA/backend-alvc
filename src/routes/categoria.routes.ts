@@ -3,12 +3,12 @@ import { deleteCategory, getCategories, getCategoryId, postCategory } from '../c
 
 const router = Router();
 
-//buscar usuarios o usuario específico
+//buscar categorias o categoria en especifico
 router.get('/categorias', getCategories);
 router.get('/categorias/:id', getCategoryId);
-//crear usuario
+//crear categoria
 router.post('/categorias', postCategory);
-//eliminar usuario
+//eliminar categoria
 router.delete('/categorias/:id', deleteCategory);
 
 export default router;

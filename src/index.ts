@@ -7,10 +7,11 @@ import chalk = require('chalk');
 import userRoutes from './routes/usuario.routes';
 import categoryRoutes from './routes/categoria.routes';
 import NoticiaRoutes from "./routes/noticia.routes";
-
+/* -------------------------------------------------------------------- */
 const app = express();
+const port = process.env.PORT || 3000;
 createConnection().then(() => {
-    console.log(chalk.green('Conexión Establecida con la Base de Datos.'));
+    console.log(chalk.green('Conexión Establecida con la Base de Datos.')); // con el puerto 3306
 }).catch(error => console.log(chalk.red(error)));
 
 // Middlewares
@@ -25,4 +26,4 @@ app.use(NoticiaRoutes);
 
 // Listen
 app.listen(3000);
-console.log(chalk.yellow('Servidor conectado en el puerto: ',3000));
+console.log(chalk.yellow('Servidor conectado en el puerto: ', port));

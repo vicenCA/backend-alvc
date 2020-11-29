@@ -9,7 +9,7 @@ export const getCategories = async (req: Request, res: Response): Promise<Respon
 };
 // Retorna una categoria en especifico por _id
 export const getCategoryId = async (req: Request, res: Response): Promise<Response> => {
-  const resultado = await getRepository(Categoria).findOne(req.params.id);
+  const resultado = await getRepository(Categoria).findOne(req.params.id_categoria);
   return res.json(resultado);
 };
 // Crea una categoria

@@ -1,3 +1,4 @@
+import { validate } from "class-validator";
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Usuario } from "../entity/Usuario";
@@ -9,7 +10,7 @@ export const getUsers = async (req: Request, res: Response): Promise<Response> =
 };
 // Conseguir a un usuario en específico
 export const getUser = async (req: Request, res: Response): Promise<Response> => {
-  const results = await getRepository(Usuario).findOne(req.params.id);
+  const results = await getRepository(Usuario).findOne(req.params.id_usuario);
   return res.json(results);
 };
 // Crear un usuario 
@@ -34,3 +35,16 @@ export const deleteUser = async (req: Request, res: Response): Promise<Response>
   const results = await getRepository(Usuario).delete(req.params.id);
   return res.json(results);
 };
+  // NO TERMINADO
+export const loginUser = async (req: Request, res: Response): Promise<Response> => {
+  const userValidator = getRepository(Usuario);
+  const {email, password} = req.body;
+
+  const usuario = new Usuario();
+  usuario.correo   = email;
+  usuario.password = password;
+
+  const error = await validate(usuario);
+
+  return res;
+}

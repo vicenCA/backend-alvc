@@ -1,3 +1,4 @@
+import { IsEmail, isEmail, Max, max, Min } from "class-validator";
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToMany, JoinTable} from "typeorm";
 import { Noticia } from "./Noticia";
 import { Tipo_usuario } from "./Tipo_usuario";
@@ -9,9 +10,13 @@ export class Usuario {
     id_usuario: number;
 
     @Column()
+    @Max(45)
+    @Min(2)
     nombre_usuario: string;
 
     @Column()
+    @Max(30)
+    @Min(6)
     password: string;
 
     @Column()
@@ -24,6 +29,7 @@ export class Usuario {
     vigencia: string;
 
     @Column()
+    @IsEmail()
     correo: string;
     
     @Column()
