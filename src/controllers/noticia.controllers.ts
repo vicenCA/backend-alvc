@@ -14,16 +14,7 @@ export const getNoticia = async (req: Request, res: Response): Promise<Response>
   const resultado = await getRepository(Noticia).findOne(req.params.id_noticia);
   return res.json(resultado);
 };
-// Conseguir a una noticia en especifico por categoria
-export const getNoticiaCategoria = async (req: Request, res: Response, cat: Categoria): Promise<Response> => {
-    const resultado = await getRepository(Noticia).find({where: {}});
-    return res.json(resultado);
-};
-// conseguir noticia
-export const getNoticiaPeriodista = async (req: Request, res: Response): Promise<Response> => {
-  const resultado = await getRepository(Noticia).findOne(req.params.id_noticia);
-  return res.json(resultado);
-};
+
 // Crear un objeto noticia a partir de los datos entregados desde el front-end
 export const postNoticia = async (req: Request, res: Response): Promise<Response> => {
   const nuevaNoticia = getRepository(Noticia).create(req.body); //req.body = objeto que contiene los datos enviados desde la parte del cliente

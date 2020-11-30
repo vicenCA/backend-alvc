@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToMany, OneToOne, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, JoinTable, ManyToMany, OneToOne, JoinColumn, Index} from "typeorm";
 import { Categoria } from "./Categoria";
 import { Usuario } from "./Usuario";
 
@@ -8,7 +8,7 @@ export class Noticia {
     @PrimaryGeneratedColumn()
     id_noticia: number;
 
-    @Column()
+    @Column("varchar", { length: 256 })
     titulo: string;
 
     @Column()
@@ -20,19 +20,19 @@ export class Noticia {
     @Column()
     visitas: number;
 
-    @Column()
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
     fecha_noticia: Date;
 
-    @Column()
+    @Column("varchar", { length: 512 })
     cuerpo: string;
 
     @ManyToMany(type => Usuario, usuario => usuario.noticias, {
-        cascade: ["insert", "update"]
     })
     @JoinTable()
-    usuarios: Usuario[];
+    usuarios: Usuario[]; // usuarios, admin, periodista etc...
 
-    @OneToOne(type => Categoria)
+    @OneToOne(() => Categoria)
     @JoinColumn()
+    @Index({unique: false})
     categoria: Categoria;
 }

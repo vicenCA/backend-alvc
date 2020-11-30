@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "typeorm:migrate": "npx ts-node ./node_modules/typeorm/cli.js migration:generate -n initial_mig",
-    "typeorm:run": "npx ts-node ./node_modules/typeorm/cli.ts migration:run"
+    "typeorm:run": "npx ts-node ./node_modules/typeorm/cli.js migration:run"
   },
   "keywords": [],
   "author": "",

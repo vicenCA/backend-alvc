@@ -1,6 +1,6 @@
 import { validate } from "class-validator";
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getConnection, getRepository } from "typeorm";
 import { Usuario } from "../entity/Usuario";
 
 // Conseguir una lista de usuarios
@@ -35,7 +35,7 @@ export const deleteUser = async (req: Request, res: Response): Promise<Response>
   const results = await getRepository(Usuario).delete(req.params.id);
   return res.json(results);
 };
-  // NO TERMINADO
+// login de un usuario
 export const loginUser = async (req: Request, res: Response): Promise<Response> => {
   const userValidator = getRepository(Usuario);
   const {email, password} = req.body;
@@ -46,5 +46,10 @@ export const loginUser = async (req: Request, res: Response): Promise<Response> 
 
   const error = await validate(usuario);
 
-  return res;
+  if (error.length = 0) {
+    const user = userValidator.createQueryBuilder("usuario").
+                               where("usuario.correo = :correo, {correo = email");
+    return res.status(200).json(user);
+  }
+  return res.status(400).json(error);
 }

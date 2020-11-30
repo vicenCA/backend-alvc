@@ -3,7 +3,8 @@ import { getUser,
          getUsers, 
          postUser, 
          putUser, 
-         deleteUser } 
+         deleteUser, 
+         loginUser} 
 from '../controllers/usuario.controller';
 
 const router = Router();
@@ -11,6 +12,7 @@ const router = Router();
 //buscar usuarios o usuario específico
 router.get('/usuarios', getUsers);
 router.get('/usuarios/:id', getUser);
+router.get('/usuarios/:id', loginUser);
 //crear usuario
 router.post('/usuarios', postUser);
 //actualizar usuario

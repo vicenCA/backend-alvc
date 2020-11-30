@@ -9,3 +9,15 @@ export class Tipo_usuario {
     @Column()
     nombre_tipo_usuario: string;
 }
+
+/*
+--------------------------------------
+|***********CATEGORIA****************|
+--------------------------------------
+| id_categoria | nombre_categoria    |
+--------------------------------------
+| 1            | administrador       |
+| 2            | periodista          |
+| 3            | registrado          |
+--------------------------------------
+*/
